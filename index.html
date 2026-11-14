@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Interés Simple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e6f2ff;
+            border-radius: 5px;
+            color: #004578;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Interés Simple</h2>
+    <div class="form-group">
+        <label for="capital">Capital Inicial ($):</label>
+        <input type="number" id="capital" placeholder="Ej. 1000">
+    </div>
+    <div class="form-group">
+        <label for="tasa">Tasa de Interés Anual (%):</label>
+        <input type="number" id="tasa" placeholder="Ej. 5">
+    </div>
+    <div class="form-group">
+        <label for="tiempo">Tiempo (años):</label>
+        <input type="number" id="tiempo" placeholder="Ej. 2">
+    </div>
+    <button onclick="calcularInteres()">Calcular</button>
+
+    <div class="result" id="resultado" style="display:none;"></div>
+</div>
+
+<script>
+    function calcularInteres() {
+        const C = parseFloat(document.getElementById('capital').value);
+        const i = parseFloat(document.getElementById('tasa').value) / 100;
+        const t = parseFloat(document.getElementById('tiempo').value);
+
+        if (isNaN(C) || isNaN(i) || isNaN(t)) {
+            alert("Por favor, introduce todos los valores numéricos correctamente.");
+            return;
+        }
+
+        const interes = C * i * t;
+        const total = C + interes;
+
+        const resDiv = document.getElementById('resultado');
+        resDiv.style.display = 'block';
+        resDiv.innerHTML = `Interés generado: $${interes.toFixed(2)}<br>Monto Total: $${total.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
